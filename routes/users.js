@@ -25,7 +25,7 @@ router.post('/submit_registration', async (req, res) => {
 
 //login
 router.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'login.html'));
+    res.sendFile(path.join(__dirname, '../public', 'login.ejs'));
 });
 
 router.post('/login', async (req, res) => {
@@ -40,7 +40,9 @@ router.post('/login', async (req, res) => {
     if (!validPassword) {
         return res.status(400).send('Invalid email or password.');
     }
-    req.session.user = user; 
+    // user cureent
+    req.session.user = user;
+    // 
     res.send('Logged in successfully');
 });
 
