@@ -11,11 +11,13 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/submit_registration', async (req, res) => {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
     const user = new User({
         fname: req.body.fname,
         lname: req.body.lname,
         email: req.body.email,
-        password: req.body.password
+        password: hashedPassword
     });
     await user.save();
     res.send('User registered successfully');
@@ -31,12 +33,14 @@ router.post('/login', async (req, res) => {
     if (!user) {
         return res.status(400).send('Invalid email or password.');
     }
-
+    // if (req.body.password !== user.password) {
+    //     return res.status(400).send('Invalid email or password.');
+    // }
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if (!validPassword) {
         return res.status(400).send('Invalid email or password.');
     }
-
+    req.session.user = user; 
     res.send('Logged in successfully');
 });
 

@@ -1,5 +1,7 @@
 // app.js
+require('dotenv').config();
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const mongoose = require('mongoose');
 const usersRoutes = require('./routes/users');
@@ -13,6 +15,12 @@ mongoose.connect('mongodb://localhost/myproject', {useNewUrlParser: true, useUni
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('Could not connect to MongoDB...', err));
 
+// current user
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 

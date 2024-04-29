@@ -18,10 +18,10 @@ function validatePassword() {
         return false;
     }
 
-    if (!/[!@#$%^&*]/.test(password)) {
-        errorMessage.textContent = 'Password must contain at least one special character.';
-        return false;
-    }
+    // if (!/[!@#$%^&-*]/.test(password)) {
+    //     errorMessage.textContent = 'Password must contain at least one special character.';
+    //     return false;
+    // }
 
     errorMessage.textContent = '';
     return true;

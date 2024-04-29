@@ -12,6 +12,7 @@
     "@admin-bro/express": "^3.1.0",
     "admin-bro": "^4.0.1",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-formidable": "^1.2.0",
     "mongoose": "^8.3.2",
