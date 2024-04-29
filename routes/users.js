@@ -45,5 +45,17 @@ router.post('/login', async (req, res) => {
     // 
     res.send('Logged in successfully');
 });
+//deconnecter
+router.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+      if(err) {
+        return res.redirect('/dashboard');
+      }
+  
+      res.clearCookie('sid');
+      res.redirect('/login');
+    })
+  });
+//
 
 module.exports = router;

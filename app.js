@@ -47,6 +47,9 @@ app.get('/login', (req, res) => {
     res.render('login');
   });
 //
+// deconnecter
+
+//
 // Use routes
 app.use('/', usersRoutes);
 app.use(adminBro.options.rootPath, adminRoutes);
